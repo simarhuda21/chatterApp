@@ -1,0 +1,14 @@
+
+<div class="jumbotron text-center">
+    <h1 class="">WeChat</h1>
+    <p class="lead">Welcome to my chat app</p>
+    <ng-template #buttons>
+        <a class="btn btn-info" [routerLink]="['/login']">Login</a>
+        <a class="btn btn-primary" [routerLink]="['/sign-up']">Sign-up</a>
+    </ng-template>
+    <div *ngIf="userService.loggedIn(); else buttons" class="container">
+        <h4 class="welcome">Welcome, {{ userService.getLoggedInUser().username }}</h4>
+         <button class="btn btn-success" routerLink="/chat" >Start Chatting</button> 
+    </div>
+</div>
+    
