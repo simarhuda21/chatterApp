@@ -26,9 +26,12 @@ export class LoginComponent implements OnInit {
     };
     this.userService.login(user).subscribe(response => {
       const res = response;
+      console.log(response);
+      
       if(res['isPresent'] === true) {
         if( res['correctPassword']=== true) {
           localStorage.setItem('user', JSON.stringify(res['user']));
+          localStorage.setItem("token", res["token"]);
           this.fmService.show('Successfully Logged In', {
             cssClass: 'alert-success',
             timeout: 3000
