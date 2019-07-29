@@ -11,6 +11,7 @@ import { FlashMessagesModule, FlashMessagesService } from 'angular2-flash-messag
  import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FileSelectDirective } from 'ng2-file-upload';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -39,7 +40,8 @@ import { ChatroomComponent } from './chatroom/chatroom.component';
     HomeComponent,
     ProfileComponent,
     ChatComponent,
-    ChatroomComponent
+    ChatroomComponent,
+    FileSelectDirective
   ],
   imports: [
     BrowserModule,

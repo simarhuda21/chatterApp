@@ -19,6 +19,11 @@ export class WebsocketService {
         this.socket.emit('message', data);
     }
 
+    sendImage(data) {
+        console.log(data);
+        this.socket.emit('image', data);
+    }
+
     newMessageReceived(){
         const observable = new Observable<{ user: String, message: String }>
         (observer => {
@@ -31,6 +36,22 @@ export class WebsocketService {
         });
         return observable;
     }
+
+    newImageReceived(){
+        const observable = new Observable<{ user: String, image: String }>
+        (observer => {
+            this.socket.on('new image', (data) => {
+                observer.next(data);
+            });
+		return () => {
+        this.socket.disconnect();
+	}
+        });
+        return observable;
+    }
+
+   
+
 
     typing(data) {
         this.socket.emit('typing', data);
