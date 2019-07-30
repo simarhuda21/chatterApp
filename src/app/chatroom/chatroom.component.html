@@ -3,8 +3,10 @@
     <span><i *ngIf="isTyping" class="isTyping">typing...</i></span>
     <div id="chat-window">
         <div *ngFor="let item of messageArray.messages">
-            <p [class.userMessage]="item.user == userService.getLoggedInUser().username" [class.secUserMessage]="item.user != userService.getLoggedInUser().username">{{ item.message }}</p>
-            <img src="" alt=""> 
+            <p  [class.userMessage]="item.user == userService.getLoggedInUser().username" [class.secUserMessage]="item.user != userService.getLoggedInUser().username">{{ item.message }}</p>
+        </div>
+        <div *ngFor="let item of imageArray.images">
+            <img [class.userImage]="item.user == userService.getLoggedInUser().username" [class.secUserImage]="item.user != userService.getLoggedInUser().username" src="http://localhost:3000/public/uploads/photo-1564485292458Screenshot from 2019-06-28 11-18-27.png">
         </div>
     </div>
     <input (kepress)="typing()" [(ngModel)]="message" name="message"  type="text" placeholder="Message" />

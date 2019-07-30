@@ -21,6 +21,7 @@ import { HomeComponent } from './home/home.component';
  import { ProfileComponent } from './profile/profile.component';
 import { ChatComponent } from './chat/chat.component';
 import { ChatroomComponent } from './chatroom/chatroom.component';
+import { GroupchatComponent } from './groupchat/groupchat.component';
 
  const routes = [
  {path: '', component: HomeComponent},
@@ -29,6 +30,7 @@ import { ChatroomComponent } from './chatroom/chatroom.component';
  {path: 'profile', component: ProfileComponent,  canActivate: [AuthGuard]},
  {path: 'chat', component: ChatComponent, canActivate: [AuthGuard]},
  {path: 'chatroom', component: ChatroomComponent, canActivate: [AuthGuard]},
+ {path: 'groupchat', component: GroupchatComponent, canActivate: [AuthGuard]}
  ];
 
 @NgModule({
@@ -41,7 +43,8 @@ import { ChatroomComponent } from './chatroom/chatroom.component';
     ProfileComponent,
     ChatComponent,
     ChatroomComponent,
-    FileSelectDirective
+    FileSelectDirective,
+    GroupchatComponent
   ],
   imports: [
     BrowserModule,

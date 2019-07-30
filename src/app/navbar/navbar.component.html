@@ -16,7 +16,10 @@
             </ng-template>
            
             <li *ngIf="userService.loggedIn()" [routerLinkActive]="['active']" class="nav-item">
-                <a class="nav-link text-dark dropdown-item cursor">Chat</a>
+                <a class="nav-link text-dark dropdown-item cursor" routerLink="/chat">Chat</a>
+            </li>
+            <li *ngIf="userService.loggedIn()" [routerLinkActive]="['active']" class="nav-item">
+                <a class="nav-link text-dark dropdown-item cursor" routerLink="/groupchat">GroupChat</a>
             </li>
             <li ngbDropdown *ngIf="userService.loggedIn(); else anonymous" class="nav-item dropdown">
                 <a ngbDropdownToggle class="nav-link text-dark dropdown-toggle cursor" id="dropdown01"

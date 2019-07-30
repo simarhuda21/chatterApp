@@ -6,7 +6,7 @@ import { WebsocketService } from '../websocket.service';
 import {  FileUploader } from 'ng2-file-upload/ng2-file-upload';
 
 import { map } from 'rxjs/operators';
-const URL = 'http://localhost:3000/api/fileUpload';
+const URL = 'http://192.168.2.93:3000/api/fileUpload';
 
 @Component({
   selector: 'app-chatroom',
@@ -18,8 +18,9 @@ export class ChatroomComponent implements OnInit {
   private username: String;
   private email: String;
   private chatroom;
+  //  flag=false;
   private message: String;
-  private image:string;
+  private imagePath:string;
   public messageArray:any = []; //Array<{user: String, message: String}> = [];
   private isTyping = false;
   public imageArray:any = [];
@@ -39,7 +40,7 @@ export class ChatroomComponent implements OnInit {
       });
 
       this.webSocketService.newImageReceived().subscribe(data => {
-        this.imageArray.push(data);
+        this.imageArray.images.push(data);
         this.isTyping = false;
       });
 
@@ -70,10 +71,12 @@ export class ChatroomComponent implements OnInit {
     
   }
   upload() {
+    // this.flag=true;
     let inputEl: HTMLInputElement = this.el.nativeElement.querySelector('#photo');
     let fileCount: number = inputEl.files.length;
     let formData = new FormData();
     if (fileCount > 0) {
+      // this.flag=false;
       formData.append('photo', inputEl.files.item(0));
       this.http.post(URL, formData).pipe(map(res => res )).subscribe((success) => {
         alert("success");
@@ -90,8 +93,8 @@ export class ChatroomComponent implements OnInit {
   }
   // ////////////////////////////////////////////////////////////////
   sendImage() {
-    this.webSocketService.sendImage({room: this.chatroom, user: this.userService.getLoggedInUser().username, image: this.image});
-    this.image='';
+    this.webSocketService.sendImage({room: this.chatroom, user: this.userService.getLoggedInUser().username, image: this.imagePath});
+    this.imagePath='';
   }
 
   typing() {

@@ -15,6 +15,7 @@ h2{
 }
 
 #chat-window{
+    display: grid;
     height: 500px;
     overflow: auto;
     background: #E2E2E2;
@@ -83,6 +84,7 @@ input{
 }
 
 .userMessage {
+    float: right;
     width: fit-content;
     max-width: 70%;
     background-color: #5B9B5B;
@@ -92,7 +94,14 @@ input{
     color: white;
 }
 
+.userImage {
+    float: right;
+    width: 100px;
+   
+}
+
 .secUserMessage {
+    float: left;
     width: fit-content;
     max-width: 70%;
     background-color: white;
@@ -100,6 +109,12 @@ input{
     border-radius: 5px;
     margin-top: 1px;
     color: black;
+}
+
+.secUserImage {
+    float: left;
+    width: 100px;
+   
 }
 
 .isTyping {
