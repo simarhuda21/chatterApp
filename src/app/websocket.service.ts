@@ -20,8 +20,9 @@ export class WebsocketService {
     }
 
     sendImage(data) {
-        console.log(data);
+        
         this.socket.emit('image', data);
+        console.log(data);
     }
 
     newMessageReceived(){
@@ -38,7 +39,7 @@ export class WebsocketService {
     }
 
     newImageReceived(){
-        const observable = new Observable<{ user: String, image: String }>
+        const observable = new Observable<{ user: String, image: [] }>
         (observer => {
             this.socket.on('new image', (data) => {
                 observer.next(data);

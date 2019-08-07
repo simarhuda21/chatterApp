@@ -6,7 +6,7 @@ import { WebsocketService } from '../websocket.service';
 import {  FileUploader } from 'ng2-file-upload/ng2-file-upload';
 
 import { map } from 'rxjs/operators';
-const URL = 'http://192.168.2.93:3000/api/fileUpload';
+const URL = 'http://localhost:3000/api/fileUpload';
 
 @Component({
   selector: 'app-chatroom',
