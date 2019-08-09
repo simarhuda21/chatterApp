@@ -3,6 +3,8 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
+import {LocationService} from'../location.service';
+
 
 @Component({
   selector: 'app-sign-up',
@@ -10,7 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent implements OnInit {
-
+ isgetlocation=false;
   count: number;
   username: String;
   email: String;
@@ -18,8 +20,10 @@ export class SignUpComponent implements OnInit {
   usernameIsEmpty: boolean;
   emailIsEmpty: boolean;
   passwordIsEmpty: boolean;
+  location: any;
+  signupForm: FormGroup;
 
-  constructor(private userService: UserService, private fmService: FlashMessagesService, private router: Router) {}
+  constructor(private userService: UserService, private fmService: FlashMessagesService, private router: Router, private locationService: LocationService) {}
 
 
   ngOnInit() {
@@ -27,29 +31,30 @@ export class SignUpComponent implements OnInit {
     this.emailIsEmpty = false;
     this.passwordIsEmpty = false;
     this.count = 0;
+    this.signupForm = new FormGroup({
+      username: new FormControl('', [Validators.required , Validators.maxLength(10)]),
+      email: new FormControl('', [Validators.required , Validators.email]),
+password: new FormControl('', [Validators.required , Validators.minLength(6)])
+});
+    
+  }
+  getLocation(){
+    this.isgetlocation=true;
+  this.locationService.getPosition().then(pos=>
+    {
+      this.location = { lat: pos.lat, lng: pos.lng}
+    });
   }
 
   submitForm() {
-    this.usernameIsEmpty = false;
-    this.emailIsEmpty = false;
-    this.passwordIsEmpty = false;
-    if (this.username === undefined || this.username === '') {
-      this.usernameIsEmpty = true;
-      this.count++;
-    }
-    if (this.email === undefined || this.email === '') {
-      this.emailIsEmpty = true;
-      this.count++;
-    }
-    if (this.password === undefined || this.password === '') {
-      this.passwordIsEmpty = true;
-      this.count++;
-    }
+   
     if (this.count === 0) {
       const user = {
         username: this.username,
         email: this.email,
-        password: this.password
+        password: this.password,
+        location: this.location
+        
       };
       this.userService.saveUser(user).subscribe(response => {
         if (response['user_already_signed_up'] === true) {

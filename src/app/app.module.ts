@@ -21,6 +21,7 @@ import { HomeComponent } from './home/home.component';
  import { ProfileComponent } from './profile/profile.component';
 import { ChatComponent } from './chat/chat.component';
 import { ChatroomComponent } from './chatroom/chatroom.component';
+import { LocationService } from './location.service';
 
 
  const routes = [
@@ -61,7 +62,8 @@ import { ChatroomComponent } from './chatroom/chatroom.component';
     FlashMessagesService,
     UserService,
     AuthGuard,
-    WebsocketService
+    WebsocketService,
+    LocationService
   ],
   bootstrap: [AppComponent]
 })
