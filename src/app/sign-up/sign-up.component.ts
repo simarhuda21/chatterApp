@@ -48,17 +48,19 @@ password: new FormControl('', [Validators.required , Validators.minLength(6)])
 
   submitForm() {
    
-    if (this.count === 0) {
+    
+     
       const user = {
-        username: this.username,
-        email: this.email,
-        password: this.password,
+        username: this.signupForm.value.username,
+        email: this.signupForm.value.email,
+        password: this.signupForm.value.password,
         location: this.location
-        
-      };
+      } 
+      
+      
       this.userService.saveUser(user).subscribe(response => {
         if (response['user_already_signed_up'] === true) {
-          this.fmService.show('Username already taken.', {
+          this.fmService.show('Username or email is already taken.', {
             cssClass: 'alert-danger',
             timeout: 3000
           });
@@ -72,5 +74,5 @@ password: new FormControl('', [Validators.required , Validators.minLength(6)])
       });
     }
   }
-}
+
 
