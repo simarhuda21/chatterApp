@@ -33,7 +33,7 @@ export class WebsocketService {
             });
 		return () => {
         this.socket.disconnect();
-	}
+	};
         });
         return observable;
     }
@@ -46,7 +46,7 @@ export class WebsocketService {
             });
 		return () => {
         this.socket.disconnect();
-	}
+	};
         });
         return observable;
     }
