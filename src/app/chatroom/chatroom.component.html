@@ -3,13 +3,13 @@
     <span><i *ngIf="isTyping" class="isTyping">typing...</i></span>
     <div id="chat-window">
         <div *ngFor="let item of messageArray.messages">
-            <p  [class.userMessage]="item.user == userService.getLoggedInUser().username" [class.secUserMessage]="item.user != userService.getLoggedInUser().username">{{ item.message }}</p>
+            <p  *ngIf="item.message != ''" [class.userMessage]="item.user == userService.getLoggedInUser().username" [class.secUserMessage]="item.user != userService.getLoggedInUser().username">{{ item.message }}</p>
         </div>
         <div *ngFor="let item of imageArray.images">
-            <img [class.userImage]="item.user == userService.getLoggedInUser().username" [class.secUserImage]="item.user != userService.getLoggedInUser().username" src="http://localhost:3000/public/uploads/photo-1564485292458.png">
+            <img [class.userImage]="item.user == userService.getLoggedInUser().username" [class.secUserImage]="item.user != userService.getLoggedInUser().username" src="http://localhost:3000/public/uploads/manavbhai.png">
         </div>
     </div>
-    <input (keypress)="typing()" [(ngModel)]="message" name="message"  type="text" placeholder="Message" />
+    <input  (keypress)="typing()" [(ngModel)]="message" name="message"  type="text" placeholder="Message" />
     <button id="send" (click)="sendMessage()">Send</button>
     <input type="file" id="photo"/>
 <!-- button to trigger the file upload when submitted -->
